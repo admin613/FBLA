@@ -33,6 +33,7 @@ public class BarGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (movingUp)
             bar.Translate(Vector3.up * currentSpeed * Time.deltaTime);
         else
@@ -68,8 +69,19 @@ public class BarGame : MonoBehaviour
         currentSpeed = 0;
         int points = (int)(10 * TOPBAR.position.y);
         score += points;
+        // for both win and lose we have to add win/loss screens same for other games
+        if(score < 0){ //quit out when lose, losing condition
+         bar.position = new Vector3(bar.position.x, MID.position.y, bar.position.z);
+            movingUp = false;
+            clicked = false;
+            oscillationSpeed = 10;
+            score = 0; 
+            canvas.SetActive(false);
+            controls.canMove = true;   
+        }
         if(score >= 300)
-        {
+        { 
+            //todo: add reward , points and attack upgrade etc.
             bar.position = new Vector3(bar.position.x, MID.position.y, bar.position.z);
             movingUp = false;
             clicked = false;
