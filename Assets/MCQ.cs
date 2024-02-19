@@ -108,6 +108,7 @@ public class MCQ : MonoBehaviour
             {
                 answerButtons[i].gameObject.SetActive(false);
             }
+            
         }
     }
     IEnumerator Waiter()
