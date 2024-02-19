@@ -27,6 +27,8 @@ public class BattleSystem : MonoBehaviour
     public int Playerdamage;
     public int PlayermaxHP;
     public Slider PlayerSlider;
+
+    public string EnemyName;
     
 
 
@@ -57,7 +59,7 @@ public class BattleSystem : MonoBehaviour
         Canvas.SetActive(true);
         if(gstate == GameState.STATE1)
         {
-            unitName = "Lazy Worker";
+            unitName = EnemyName;
             damage = 1;
             maxHP = 5;
             currentHP = 5;
@@ -68,7 +70,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN;
         yield return new WaitForSeconds(1f);
         
-        description.text = "Choose a action:";
+        description.text = "Choose a attack:";
 
 
 

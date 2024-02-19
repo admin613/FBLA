@@ -12,6 +12,8 @@ public class controls : MonoBehaviour
     public Animator animator;
     public BattleSystem battle;
     public GameObject bargame;
+
+    
     public Collider2D bargameCollider;
     public Collider2D mcqgameCollider;
     public Collider2D playerCollider;
@@ -41,14 +43,14 @@ public class controls : MonoBehaviour
             canMove = false;
             mcqgameCollider.enabled = false;
         }
-        if (movement != Vector2.zero && canMove)
+        if (movement != Vector2.zero && canMove) 
         {
-            float rng = Random.Range(0f, 100f);
-            if(rng < 0.03f)
-            {
-                battle.BattleStart();
-                canMove = false;
-            }
+            // float rng = Random.Range(0f, 100f);
+            // if(rng < 0.03f) 
+            // {
+            //     battle.BattleStart();
+            //     canMove = false;
+            // }
 
             if (movement.x < 0)
                 player.localScale = new Vector3(-1, 1, 1);
