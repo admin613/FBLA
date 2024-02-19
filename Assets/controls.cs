@@ -10,15 +10,6 @@ public class controls : MonoBehaviour
     public float movespeed = 5f;
     Vector2 movement;
     public Animator animator;
-    public BattleSystem battle;
-    public GameObject bargame;
-
-    
-    public Collider2D bargameCollider;
-    public Collider2D mcqgameCollider;
-    public Collider2D playerCollider;
-    public GameObject trig;
-    public GameObject mcq;
     public static bool canMove = true;
 
     void Start()
@@ -31,27 +22,10 @@ public class controls : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        if(playerCollider.IsTouching(bargameCollider))
-        {
-            bargame.SetActive(true);
-            canMove = false;
-            bargameCollider.enabled = false;
-        }
-        if (playerCollider.IsTouching(mcqgameCollider))
-        {
-            mcq.SetActive(true);
-            canMove = false;
-            mcqgameCollider.enabled = false;
-        }
-        if (movement != Vector2.zero && canMove) 
-        {
-            // float rng = Random.Range(0f, 100f);
-            // if(rng < 0.03f) 
-            // {
-            //     battle.BattleStart();
-            //     canMove = false;
-            // }
 
+        if (movement != Vector2.zero && canMove)  //movement
+        {
+           
             if (movement.x < 0)
                 player.localScale = new Vector3(-1, 1, 1);
             else

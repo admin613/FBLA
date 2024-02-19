@@ -6,9 +6,9 @@ using UnityEngine;
 
 
 
-public class NewBehaviourScript : MonoBehaviour
+public class MiniGameStart : MonoBehaviour
 {
-    public BattleSystem battle;
+    public GameObject minigame;
     public Collider2D BattleCollider;
     public Collider2D playerCollider;
 
@@ -24,7 +24,7 @@ public class NewBehaviourScript : MonoBehaviour
         
         if (playerCollider.IsTouching(BattleCollider))
         {
-            battle.BattleStart();
+            minigame.SetActive(true);
             controls.canMove = false;
             BattleCollider.enabled = false;
         }
