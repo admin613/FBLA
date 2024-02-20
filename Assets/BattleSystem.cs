@@ -15,24 +15,33 @@ public class BattleSystem : MonoBehaviour
     public RectTransform Enemytransform;
     public BattleState state;
     public GameState gstate;
-  
 
+    public GameObject HealthUI;
+    public GameObject AttackButton;
+    public GameObject moveSelector;
+    public GameObject moveDescriptionUI;
+    public GameObject DescriptionUI;
+   
+    private bool frozen = false;
     public string unitName;
     public int damage;
     public int maxHP;
     public Slider enemySlider;
     public int currentHP;
-
     public int playerHP;
     public int Playerdamage;
     public int PlayermaxHP;
     public Slider PlayerSlider;
+    public string[] movelist = { "attack","freeze","increase attack","heal"};
+    
+    public string[] moveDescriptions = {"Deals damage", "freezes enemy for one turn", "increases your attack by 1", "heals you by 10 hp"};
 
     public string EnemyName;
     
 
 
     public TextMeshProUGUI description;
+    public TextMeshProUGUI moveDescription;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,48 +84,90 @@ public class BattleSystem : MonoBehaviour
 
 
     }
-
-        
+    public void OnMove1ButtonClicked(int num)
+    {
+        StartCoroutine(PlayerAttack(num));
+    }
+    public void OnHover(int num)
+    {
+        moveDescription.text = moveDescriptions[num];
+    }
     public void OnattackButton()
     {
 
         if (state != BattleState.PLAYERTURN)
             return;
-        StartCoroutine(PlayerAttack());
-
+        toggleElements(false);
     }
-    IEnumerator PlayerAttack()
+    public void toggleElements(bool enabled)
     {
+        HealthUI.SetActive(enabled);
+        AttackButton.SetActive(enabled);
+        DescriptionUI.SetActive(enabled);
+        moveSelector.SetActive(!enabled);
+        moveDescriptionUI.SetActive(!enabled);
+    }
 
-        currentHP -= Playerdamage;
-        enemySlider.value = (currentHP);
-        state = BattleState.ENEMYTURN;
-        description.text = "You used FBLA CONCPET!";
-        yield return new WaitForSeconds(1f);
-        if (currentHP <= 0)
+
+    
+    IEnumerator PlayerAttack(int attacktype)
+    {
+        toggleElements(true);
+        description.text = "You used " + movelist[attacktype] + "!";
+        if (attacktype == 0)
         {
-            state = BattleState.WON;
-            Canvas.SetActive(false);
-            controls.canMove = true;
-            yield break;
+            currentHP -= Playerdamage;
+            enemySlider.value = (currentHP);
+            state = BattleState.ENEMYTURN;
+            yield return new WaitForSeconds(1f);
+            if (currentHP <= 0)
+            {
+                state = BattleState.WON;
+                Canvas.SetActive(false);
+                controls.canMove = true;
+                yield break;
+            }
+        }
+        if(attacktype == 1)
+        {
+            frozen = true;
+        }
+        if(attacktype == 2)
+        {
+            Playerdamage++;
+        }
+        if(attacktype == 3)
+        {
+            if (playerHP + 10 > PlayermaxHP)
+                playerHP = PlayermaxHP;
+            else
+                playerHP += 10;
         }
 
-       
-
-        yield return new WaitForSeconds(0.5f);
-        description.text = unitName + " attacked with \"procrastination\"";
-        playerHP -= damage;
-        PlayerSlider.value = playerHP;
-
-        yield return new WaitForSeconds(1f);
-        if(playerHP <= 0)
+        if (!frozen)
         {
-            state = BattleState.LOST;
-            Canvas.SetActive(false);
-            yield break;
+            yield return new WaitForSeconds(0.5f);
+            description.text = unitName + " attacked with \"procrastination\"";
+            playerHP -= damage;
+            PlayerSlider.value = playerHP;
+
+            yield return new WaitForSeconds(1f);
+            if (playerHP <= 0)
+            {
+                state = BattleState.LOST;
+                Canvas.SetActive(false);
+                yield break;
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            description.text = unitName + " is frozen!";
         }
 
+        frozen = false;
         state = BattleState.PLAYERTURN;
+       
         description.text = "Choose a action:";
 
     }
