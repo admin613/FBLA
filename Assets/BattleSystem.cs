@@ -32,7 +32,7 @@ public class BattleSystem : MonoBehaviour
     public int Playerdamage;
     public int PlayermaxHP;
     public Slider PlayerSlider;
-    public string[] movelist = { "attack","freeze","increase attack","heal"};
+    public string[] movelist = { "Sustainability Strike"," Finance Freeze","Cash Flow Crumble","Business Longevity"};
     
     public string[] moveDescriptions = {"Deals damage", "freezes enemy for one turn", "increases your attack by 1", "heals you by 10 hp"};
 
