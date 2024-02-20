@@ -32,10 +32,11 @@ public class BattleSystem : MonoBehaviour
     public int Playerdamage;
     public int PlayermaxHP;
     public Slider PlayerSlider;
-    public string[] movelist = { "Sustainability Strike"," Finance Freeze","Cash Flow Crumble","Business Longevity"};
+    public string[] movelist = { "Sustainability Strike", "", "", ""};
+    //," Finance Freeze","Cash Flow Crumble","Business Longevity"};
     
     public int[] attackMultiplier = { 1, 0, 0 ,0 };
-    public string[] moveDescriptions = {"Deals damage", "freezes enemy for" + attackMultiplier[1] +  "turn", "increases your attack by 1", "heals you by 10 hp"};
+    public string[] moveDescriptions = {"Deals damage", "freezes enemy for a a number of turns", "increases your attack by 1", "heals you by 10 hp"};
 
     public string EnemyName;
     
@@ -137,7 +138,7 @@ public class BattleSystem : MonoBehaviour
         {
             Playerdamage += attackMultiplier[2];
         }
-        if(attacktype == 3 attackMultiplier[3] > 0)
+        if(attacktype == 3 && attackMultiplier[3] > 0)
         {
             if (playerHP + 10 * attackMultiplier[3] > PlayermaxHP)
                 playerHP = PlayermaxHP;
