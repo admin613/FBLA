@@ -11,6 +11,8 @@ public class NewBehaviourScript : MonoBehaviour
     public BattleSystem battle;
     public Collider2D BattleCollider;
     public Collider2D playerCollider;
+    public DialougeSystem dialouge;
+    public string[] dialouges = { "hello", "hi", "asdfasjdflas;dfkasj" };
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +26,10 @@ public class NewBehaviourScript : MonoBehaviour
         
         if (playerCollider.IsTouching(BattleCollider))
         {
-            battle.BattleStart();
             controls.canMove = false;
             BattleCollider.enabled = false;
+            dialouge.OpenDialouge(dialouges, battle);
+           
         }
     }
 }

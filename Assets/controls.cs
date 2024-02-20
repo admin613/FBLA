@@ -39,6 +39,7 @@ public class controls : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement.normalized * movespeed * Time.fixedDeltaTime);
+        if(canMove)
+            rb.MovePosition(rb.position + movement.normalized * movespeed * Time.fixedDeltaTime);
     }
 }
