@@ -22,7 +22,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject moveDescriptionUI;
     public GameObject DescriptionUI;
    
-    private bool frozen = false;
+    private int frozen = 0;
     public string unitName;
     public int damage;
     public int maxHP;
@@ -130,7 +130,7 @@ public class BattleSystem : MonoBehaviour
         }
         if(attacktype == 1)
         {
-            frozen = true;
+            frozen = 0;
         }
         if(attacktype == 2)
         {
@@ -144,7 +144,7 @@ public class BattleSystem : MonoBehaviour
                 playerHP += 10;
         }
 
-        if (!frozen)
+        if (frozen == 2)
         {
             yield return new WaitForSeconds(0.5f);
             description.text = unitName + " attacked with \"procrastination\"";
@@ -163,9 +163,10 @@ public class BattleSystem : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             description.text = unitName + " is frozen!";
+            frozen++;
         }
 
-        frozen = false;
+        
         state = BattleState.PLAYERTURN;
        
         description.text = "Choose a action:";
