@@ -82,6 +82,8 @@ public class BarGame : MonoBehaviour
         if(score >= 300)
         { 
             //todo: add reward , points and attack upgrade etc.
+            controls.attackMultiplier[2] = 1;
+            controls.movelist[2] = "Confidence Cascade"; 
             bar.position = new Vector3(bar.position.x, MID.position.y, bar.position.z);
             movingUp = false;
             clicked = false;

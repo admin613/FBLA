@@ -127,7 +127,7 @@ public class BattleSystem : MonoBehaviour
         description.text = "You used " + controls.movelist[attacktype] + "!";
         if (attacktype == 0)
         {
-            currentHP -= Playerdamage * controls.attackMultiplier[0];
+            currentHP -= (int)(Playerdamage * controls.attackMultiplier[0]);
             enemySlider.value = (currentHP);
             state = BattleState.ENEMYTURN;
             yield return new WaitForSeconds(1f);
@@ -145,7 +145,7 @@ public class BattleSystem : MonoBehaviour
         }
         if(attacktype == 2 && controls.attackMultiplier[2] > 0)
         {
-            Playerdamage += controls.attackMultiplier[2];
+            Playerdamage += (int)controls.attackMultiplier[2];
         }
         if(attacktype == 3 && controls.attackMultiplier[3] > 0)
         {
