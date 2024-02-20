@@ -34,7 +34,8 @@ public class BattleSystem : MonoBehaviour
     public Slider PlayerSlider;
     public string[] movelist = { "Sustainability Strike"," Finance Freeze","Cash Flow Crumble","Business Longevity"};
     
-    public string[] moveDescriptions = {"Deals damage", "freezes enemy for one turn", "increases your attack by 1", "heals you by 10 hp"};
+    public int[] attackMultiplier = { 1, 0, 0 ,0 };
+    public string[] moveDescriptions = {"Deals damage", "freezes enemy for" + attackMultiplier[1] +  "turn", "increases your attack by 1", "heals you by 10 hp"};
 
     public string EnemyName;
     
@@ -116,7 +117,7 @@ public class BattleSystem : MonoBehaviour
         description.text = "You used " + movelist[attacktype] + "!";
         if (attacktype == 0)
         {
-            currentHP -= Playerdamage;
+            currentHP -= Playerdamage * attackMultiplier[0];
             enemySlider.value = (currentHP);
             state = BattleState.ENEMYTURN;
             yield return new WaitForSeconds(1f);
@@ -128,20 +129,20 @@ public class BattleSystem : MonoBehaviour
                 yield break;
             }
         }
-        if(attacktype == 1)
+        if(attacktype == attackMultiplier[1] > 0)
         {
-            frozen = 0;
+            frozen = 1 - attackMultiplier[1];
         }
-        if(attacktype == 2)
+        if(attacktype == 2 && attackMultiplier[2] > 0)
         {
-            Playerdamage++;
+            Playerdamage += attackMultiplier[2];
         }
-        if(attacktype == 3)
+        if(attacktype == 3 attackMultiplier[3] > 0)
         {
-            if (playerHP + 10 > PlayermaxHP)
+            if (playerHP + 10 * attackMultiplier[3] > PlayermaxHP)
                 playerHP = PlayermaxHP;
             else
-                playerHP += 10;
+                playerHP += 10 * attackMultiplier[3];
         }
 
         if (frozen == 2)
