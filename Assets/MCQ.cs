@@ -10,6 +10,8 @@ public class MCQ : MonoBehaviour
     public TextMeshProUGUI questionText;
     public Button[] answerButtons;
     public TextMeshProUGUI timeLeftText;
+    public string addString;
+    public int multiplierIndex;
 
 
     public float timeLimit = 20f; // Time limit per question
@@ -104,6 +106,11 @@ public class MCQ : MonoBehaviour
             
             questionText.text = "Quiz Finished!";
             StartCoroutine(Waiter());
+            if(playerScore >= questions.Length - 1)
+            {
+                controls.attackMultiplier[multiplierIndex] = 1;
+                controls.movelist[multiplierIndex] = addString; 
+            }
             for (int i = 0; i < answerButtons.Length; i++)
             {
                 answerButtons[i].gameObject.SetActive(false);

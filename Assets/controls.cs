@@ -11,9 +11,9 @@ public class controls : MonoBehaviour
     Vector2 movement;
     public Animator animator;
     public static bool canMove = true;
-    public static string[] movelist = { "Sustainability Strike", "", "", ""};
+    public static string[] movelist = { "Sustainability Strike", "", "", ""}; //Finance freeze, Confidence cascade, Supply surplus
     public static string[] moveDescriptions = {"Deals damage", "freezes enemy for a a number of turns", "increases your attack by 1", "heals you by 10 hp"};
-    public static int[] attackMultiplier = { 1, 0, 0 ,0 };
+    public static int[] attackMultiplier = { 1, 0, 0,0 };
     void Start()
     {
         
