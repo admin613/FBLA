@@ -129,7 +129,7 @@ public class BattleSystem : MonoBehaviour
                 yield break;
             }
         }
-        if(attacktype == attackMultiplier[1] > 0)
+        if(attacktype == 1 && attackMultiplier[1] > 0 )
         {
             frozen = 1 - attackMultiplier[1];
         }
