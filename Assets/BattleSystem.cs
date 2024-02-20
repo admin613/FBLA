@@ -22,7 +22,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject moveDescriptionUI;
     public GameObject DescriptionUI;
    
-    private bool frozen = false;
+    private int frozen = 0;
     public string unitName;
     public int damage;
     public int maxHP;
@@ -32,9 +32,11 @@ public class BattleSystem : MonoBehaviour
     public int Playerdamage;
     public int PlayermaxHP;
     public Slider PlayerSlider;
-    public string[] movelist = { "attack","freeze","increase attack","heal"};
     
-    public string[] moveDescriptions = {"Deals damage", "freezes enemy for one turn", "increases your attack by 1", "heals you by 10 hp"};
+    //," Finance Freeze","Cash Flow Crumble","Business Longevity"};
+    
+    
+    
 
     public string EnemyName;
     
@@ -90,7 +92,7 @@ public class BattleSystem : MonoBehaviour
     }
     public void OnHover(int num)
     {
-        moveDescription.text = moveDescriptions[num];
+        moveDescription.text = controls.moveDescriptions[num];
     }
     public void OnattackButton()
     {
@@ -113,10 +115,10 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerAttack(int attacktype)
     {
         toggleElements(true);
-        description.text = "You used " + movelist[attacktype] + "!";
+        description.text = "You used " + controls.movelist[attacktype] + "!";
         if (attacktype == 0)
         {
-            currentHP -= Playerdamage;
+            currentHP -= Playerdamage * controls.attackMultiplier[0];
             enemySlider.value = (currentHP);
             state = BattleState.ENEMYTURN;
             yield return new WaitForSeconds(1f);
@@ -128,23 +130,23 @@ public class BattleSystem : MonoBehaviour
                 yield break;
             }
         }
-        if(attacktype == 1)
+        if(attacktype == 1 && controls.attackMultiplier[1] > 0 )
         {
-            frozen = true;
+            frozen = 1 - controls.attackMultiplier[1];
         }
-        if(attacktype == 2)
+        if(attacktype == 2 && controls.attackMultiplier[2] > 0)
         {
-            Playerdamage++;
+            Playerdamage += controls.attackMultiplier[2];
         }
-        if(attacktype == 3)
+        if(attacktype == 3 && controls.attackMultiplier[3] > 0)
         {
-            if (playerHP + 10 > PlayermaxHP)
+            if (playerHP + 10 * controls.attackMultiplier[3] > PlayermaxHP)
                 playerHP = PlayermaxHP;
             else
-                playerHP += 10;
+                playerHP += 10 * controls.attackMultiplier[3];
         }
 
-        if (!frozen)
+        if (frozen == 2)
         {
             yield return new WaitForSeconds(0.5f);
             description.text = unitName + " attacked with \"procrastination\"";
@@ -163,9 +165,10 @@ public class BattleSystem : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             description.text = unitName + " is frozen!";
+            frozen++;
         }
 
-        frozen = false;
+        
         state = BattleState.PLAYERTURN;
        
         description.text = "Choose a action:";
