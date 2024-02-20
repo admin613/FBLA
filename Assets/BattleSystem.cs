@@ -31,6 +31,7 @@ public class BattleSystem : MonoBehaviour
     public int playerHP;
     public int Playerdamage;
     public int PlayermaxHP;
+    public GameObject[] buttons;
     public Slider PlayerSlider;
     
     //," Finance Freeze","Cash Flow Crumble","Business Longevity"};
@@ -74,6 +75,14 @@ public class BattleSystem : MonoBehaviour
             damage = 1;
             maxHP = 5;
             currentHP = 5;
+        }
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = controls.movelist[i];
+            if (controls.movelist[i].Equals("-"))
+            {
+                buttons[i].GetComponent<Button>().enabled = false;
+            }
         }
         enemySlider.maxValue = maxHP;
         enemySlider.value = maxHP;

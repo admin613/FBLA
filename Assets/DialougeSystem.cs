@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 public class DialougeSystem : MonoBehaviour
-{
+{   
     public TextMeshProUGUI dialougebox;
     public GameObject game;
     public BattleSystem battle;
