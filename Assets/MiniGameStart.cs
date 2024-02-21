@@ -11,8 +11,8 @@ public class MiniGameStart : MonoBehaviour
     public GameObject minigame;
     public Collider2D BattleCollider;
     public Collider2D playerCollider;
-    public DialougeSystem dialouge;
-    public string[] dialouges = { "hello", "hi", "asdfasjdflas;dfkasj"};
+    public DialougeSystem dialouge = null;
+    public string[] dialouges;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +28,11 @@ public class MiniGameStart : MonoBehaviour
            
             controls.canMove = false;
             BattleCollider.enabled = false;
+            if(dialouges[0] != ""){
             dialouge.OpenDialouge(dialouges, minigame);
-            
+            }else{
+            minigame.SetActive();
+            }
         }
     }
 }

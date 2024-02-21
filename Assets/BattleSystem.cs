@@ -53,7 +53,7 @@ public class BattleSystem : MonoBehaviour
         PlayermaxHP = 20;
         PlayerSlider.maxValue = PlayermaxHP;
         PlayerSlider.value = PlayermaxHP;
-
+        
         gstate = GameState.STATE1;
     }
     public void BattleStart()
