@@ -10,6 +10,12 @@ public class DialougeSystem : MonoBehaviour
     public string[] dialouge;
     int i = 0;
     bool isBattle = false;
+    public void OpenDialouge(string[] dialouge){
+        isBattle = false;
+        gameObject.SetActive(true);
+        this.dialouge = dialouge;
+        dialougebox.text = dialouge[0];
+    }
     public void OpenDialouge(string[] dialouge, GameObject game)
     {
         isBattle = false;

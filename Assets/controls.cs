@@ -6,7 +6,7 @@ public class controls : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody2D rb;
-    public Transform player;
+    public static Transform player;
     public float movespeed = 5f;
     Vector2 movement;
     public Animator animator;
