@@ -22,6 +22,7 @@ public class Teleport : MonoBehaviour
     {
         
        if(tpCollider.IsTouching(playerCollider)){
+        controls.canMove = false;
         tpCollider.enabled = false;
         wow.player.position = new Vector2(cords[0], cords[1]);
         if(dialouges[0] != ""){
