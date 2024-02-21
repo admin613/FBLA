@@ -9,10 +9,8 @@ public enum GameState { STATE1, STATE2, STATE3, STATE4}
 public class BattleSystem : MonoBehaviour
 {
 
-    public GameObject enemyPrefab;
-    public GameObject Unit;
+
     public GameObject Canvas;
-    public RectTransform Enemytransform;
     public BattleState state;
     public GameState gstate;
 
@@ -39,7 +37,7 @@ public class BattleSystem : MonoBehaviour
     
     
 
-    public string EnemyName;
+    
     
 
 
@@ -56,25 +54,26 @@ public class BattleSystem : MonoBehaviour
         
         gstate = GameState.STATE1;
     }
-    public void BattleStart()
+    public void BattleStart(string name, int damage, int hp, GameObject c)
     {
+        Canvas = c;
         if(state != BattleState.START)
         {
             state = BattleState.START;
-            StartCoroutine(SetupBattle());
+            StartCoroutine(SetupBattle(name, damage, hp));
         }
         
     }
 
-    IEnumerator SetupBattle()
+    IEnumerator SetupBattle(string name, int idamadge, int ihp)
     {
         Canvas.SetActive(true);
         if(gstate == GameState.STATE1)
         {
-            unitName = EnemyName;
-            damage = 1;
-            maxHP = 5;
-            currentHP = 5;
+            unitName = name;
+            damage = idamadge;
+            maxHP = ihp;
+            currentHP = ihp;
         }
         for(int i = 0; i < buttons.Length; i++)
         {

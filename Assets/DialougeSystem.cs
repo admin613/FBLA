@@ -8,6 +8,7 @@ public class DialougeSystem : MonoBehaviour
     public GameObject game;
     public BattleSystem battle;
     public string[] dialouge;
+
     int i = 0;
     bool isBattle = false;
     public void OpenDialouge(string[] dialouge){
@@ -24,10 +25,10 @@ public class DialougeSystem : MonoBehaviour
         dialougebox.text = dialouge[0];
         this.game = game;
     }
-    public void OpenDialouge(string[] dialouge, BattleSystem game)
+    public void OpenDialouge(string[] dialouge, BattleSystem game, string name, int damadge, int hp, GameObject c)
     {
         if (dialouge.Length < 1)
-            game.BattleStart();
+            game.BattleStart(name, damadge, hp, c);
         else
         {
             isBattle = true;
@@ -51,7 +52,7 @@ public class DialougeSystem : MonoBehaviour
             }
             else if (isBattle)
             {
-                battle.BattleStart();
+                battle.BattleStart("Unethical Employee", 5, 5, null);
             }
             else
                 controls.canMove = true;

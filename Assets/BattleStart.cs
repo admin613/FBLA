@@ -8,11 +8,17 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public GameObject Canvas;
     public BattleSystem battle;
     public Collider2D BattleCollider;
     public Collider2D playerCollider;
     public DialougeSystem dialouge;
     public string[] dialouges;
+
+    public int hp;
+    public int damadge;
+
+    public string name;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +35,9 @@ public class NewBehaviourScript : MonoBehaviour
             controls.canMove = false;
             BattleCollider.enabled = false;
             if(dialouges[0] != ""){
-            dialouge.OpenDialouge(dialouges, battle);
+            dialouge.OpenDialouge(dialouges, battle, name, damadge, hp, Canvas);
             }
-            
+            battle.BattleStart(name, damadge, hp, Canvas);
             
         }
     }

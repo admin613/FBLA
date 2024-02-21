@@ -79,7 +79,7 @@ public class BarGame : MonoBehaviour
             canvas.SetActive(false);
             controls.canMove = true;   
         }
-        if(score >= 300)
+        if(score >= 200)
         { 
             //todo: add reward , points and attack upgrade etc.
             controls.attackMultiplier[2] = 1;
@@ -90,6 +90,7 @@ public class BarGame : MonoBehaviour
             oscillationSpeed = 10;
             score = 0; 
             canvas.SetActive(false);
+           
             controls.canMove = true;
         }
         if (points > 0)
