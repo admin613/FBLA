@@ -30,9 +30,9 @@ public class MiniGameStart : MonoBehaviour
             BattleCollider.enabled = false;
             if(dialouges[0] != ""){
             dialouge.OpenDialouge(dialouges, minigame);
-            }else{
-            minigame.SetActive();
             }
+            
+            
         }
     }
 }

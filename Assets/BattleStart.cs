@@ -30,9 +30,9 @@ public class NewBehaviourScript : MonoBehaviour
             BattleCollider.enabled = false;
             if(dialouges[0] != ""){
             dialouge.OpenDialouge(dialouges, battle);
-            }else{
-            battle.BattleStart();
             }
+            
+            
         }
     }
 }
