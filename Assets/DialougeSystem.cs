@@ -20,11 +20,17 @@ public class DialougeSystem : MonoBehaviour
     }
     public void OpenDialouge(string[] dialouge, BattleSystem game)
     {
-        isBattle = true;
-        gameObject.SetActive(true);
-        this.dialouge = dialouge;
-        dialougebox.text = dialouge[0];
-        battle = game;
+        if (dialouge.Length < 1)
+            game.BattleStart();
+        else
+        {
+            isBattle = true;
+            gameObject.SetActive(true);
+            this.dialouge = dialouge;
+            dialougebox.text = dialouge[0];
+            battle = game;
+        }
+        
     }
 
     public void OnButtonclick()
