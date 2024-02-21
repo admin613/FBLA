@@ -12,7 +12,7 @@ public class NewBehaviourScript : MonoBehaviour
     public Collider2D BattleCollider;
     public Collider2D playerCollider;
     public DialougeSystem dialouge;
-    public string[] dialouges = { "hello", "hi", "asdfasjdflas;dfkasj" };
+    public string[] dialouges;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +28,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             controls.canMove = false;
             BattleCollider.enabled = false;
+            if(dialouges[0] != ""){
             dialouge.OpenDialouge(dialouges, battle);
-           
+            }else{
+            battle.BattleStart();
+            }
         }
     }
 }
