@@ -7,7 +7,7 @@ public class NPC : MonoBehaviour
     public Collider2D NPCCollider;
     public Collider2D playerCollider;
     public DialougeSystem dialouge;
-    public GameObject g = null;
+   
     
     public string[] dialouges = { "Lore lore Lore lore Lore lore Lore lore Lore lore Lore lore", "hi", "asdfasjdflas;dfkasj"};
 
@@ -19,7 +19,7 @@ public class NPC : MonoBehaviour
         {
             controls.canMove = false;
             NPCCollider.enabled = false;
-            dialouge.OpenDialouge(dialouges,g);
+            dialouge.OpenDialouge(dialouges);
 
         }
     }
