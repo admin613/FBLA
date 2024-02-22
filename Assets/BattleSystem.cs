@@ -13,6 +13,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject Canvas;
     public BattleState state;
     public GameState gstate;
+    public GameObject gameover;
 
     public GameObject HealthUI;
     public GameObject AttackButton;
@@ -20,7 +21,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject moveDescriptionUI;
     public GameObject DescriptionUI;
    
-    private int frozen = 0;
+    private int frozen = 2;
     public string unitName;
     public int damage;
     public int maxHP;
@@ -31,7 +32,9 @@ public class BattleSystem : MonoBehaviour
     public int PlayermaxHP;
     public GameObject[] buttons;
     public Slider PlayerSlider;
-    
+    public GameObject canvas;
+    public GameObject winscreen;
+    public Image enemy;
     //," Finance Freeze","Cash Flow Crumble","Business Longevity"};
     
     
@@ -54,9 +57,9 @@ public class BattleSystem : MonoBehaviour
         
         gstate = GameState.STATE1;
     }
-    public void BattleStart(string name, int damage, int hp, GameObject c)
+    public void BattleStart(string name, int damage, int hp, Sprite enemyimg)
     {
-        Canvas = c;
+        enemy.sprite = enemyimg;
         if(state != BattleState.START)
         {
             state = BattleState.START;
@@ -133,6 +136,8 @@ public class BattleSystem : MonoBehaviour
             if (currentHP <= 0)
             {
                 state = BattleState.WON;
+                winscreen.SetActive(true);
+                investors.invest += 100;
                 Canvas.SetActive(false);
                 controls.canMove = true;
                 yield break;
@@ -140,7 +145,7 @@ public class BattleSystem : MonoBehaviour
         }
         if(attacktype == 1 && controls.attackMultiplier[1] > 0 )
         {
-            frozen = 1 - controls.attackMultiplier[1];
+            frozen = 0;
         }
         if(attacktype == 2 && controls.attackMultiplier[2] > 0)
         {
@@ -165,6 +170,7 @@ public class BattleSystem : MonoBehaviour
             if (playerHP <= 0)
             {
                 state = BattleState.LOST;
+                gameover.SetActive(true);
                 Canvas.SetActive(false);
                 yield break;
             }

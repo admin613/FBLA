@@ -14,6 +14,7 @@ public class controls : MonoBehaviour
     public static string[] movelist = { "Sustainability Strike", "-", "-", "-"};
     public static string[] moveDescriptions = {"Deals damage", "", "", ""};
     public static int[] attackMultiplier = { 1, 0, 0 ,0 };
+    public bool second;
     void Start()
     {
         
@@ -22,8 +23,32 @@ public class controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (!second)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            if(Input.GetKey(KeyCode.L))
+                movement.x = 1;
+            else
+                movement.x = 0;
+            if (Input.GetKey(KeyCode.J))
+                movement.x = -1;
+            else
+                movement.x = 0;
+            if (Input.GetKey(KeyCode.I))
+                movement.y = 1;
+            else
+                movement.y = 0;
+            if (Input.GetKey(KeyCode.K))
+                movement.y = -1;
+            else
+                movement.y = 0;
+
+        }
+        
 
         if (movement != Vector2.zero && canMove)  //movement
         {

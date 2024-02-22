@@ -6,32 +6,46 @@ public class DialougeSystem : MonoBehaviour
 {   
     public TextMeshProUGUI dialougebox;
     public GameObject game;
+    public MCQ mcq;
     public BattleSystem battle;
+    public GameObject mcqui;
+    public Sprite c;
     public string[] dialouge;
 
     int i = 0;
     bool isBattle = false;
+    bool isMcq = false;
     public void OpenDialouge(string[] dialouge){
         isBattle = false;
+        isMcq = false;
         gameObject.SetActive(true);
         this.dialouge = dialouge;
         dialougebox.text = dialouge[0];
     }
     public void OpenDialouge(string[] dialouge, GameObject game)
     {
-        isBattle = false;
-        gameObject.SetActive(true);
-        this.dialouge = dialouge;
-        dialougebox.text = dialouge[0];
-        this.game = game;
+        if (dialouge.Length < 1)
+            game.SetActive(true);
+        else
+        {
+            isBattle = false;
+            isMcq = false;
+            gameObject.SetActive(true);
+            this.dialouge = dialouge;
+            dialougebox.text = dialouge[0];
+            this.game = game;
+        }
+     
     }
-    public void OpenDialouge(string[] dialouge, BattleSystem game, string name, int damadge, int hp, GameObject c)
+
+    public void OpenDialouge(string[] dialouge, BattleSystem game, string name, int damadge, int hp, Sprite c)
     {
         if (dialouge.Length < 1)
             game.BattleStart(name, damadge, hp, c);
         else
         {
             isBattle = true;
+            isMcq = false;
             gameObject.SetActive(true);
             this.dialouge = dialouge;
             dialougebox.text = dialouge[0];
@@ -52,7 +66,7 @@ public class DialougeSystem : MonoBehaviour
             }
             else if (isBattle)
             {
-                battle.BattleStart("Unethical Employee", 5, 5, null);
+                battle.BattleStart("Unethical Employee", 5, 5, c);
             }
             else
                 controls.canMove = true;

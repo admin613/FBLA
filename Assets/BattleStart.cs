@@ -13,6 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
     public Collider2D BattleCollider;
     public Collider2D playerCollider;
     public DialougeSystem dialouge;
+    public Sprite enemySprite;
     public string[] dialouges;
 
     public int hp;
@@ -35,9 +36,9 @@ public class NewBehaviourScript : MonoBehaviour
             controls.canMove = false;
             BattleCollider.enabled = false;
             if(dialouges[0] != ""){
-            dialouge.OpenDialouge(dialouges, battle, name, damadge, hp, Canvas);
+            dialouge.OpenDialouge(dialouges, battle, name, damadge, hp, enemySprite);
             }
-            battle.BattleStart(name, damadge, hp, Canvas);
+            battle.BattleStart(name, damadge, hp, enemySprite);
             
         }
     }

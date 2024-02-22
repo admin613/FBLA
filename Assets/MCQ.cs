@@ -34,6 +34,12 @@ public class MCQ : MonoBehaviour
     {
         ShowQuestion(currentQuestionIndex);
     }
+    public void setQuestions(string[] questions, string[][] answers, int[] correctAnswers)
+    {
+        this.questions = questions;
+        this.answers = answers;
+        this.correctAnswers = correctAnswers;
+    }
 
     void Update()
     {
@@ -76,8 +82,9 @@ public class MCQ : MonoBehaviour
     }
   
 
-    void ShowQuestion(int index)
+    public void ShowQuestion(int index)
     {
+
         questionText.text = questions[index];
         for (int i = 0; i < answerButtons.Length; i++)
         {
