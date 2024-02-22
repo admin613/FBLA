@@ -54,7 +54,7 @@ public class BattleSystem : MonoBehaviour
         PlayermaxHP = 20;
         PlayerSlider.maxValue = PlayermaxHP;
         PlayerSlider.value = PlayermaxHP;
-        
+        frozen = 2;
         gstate = GameState.STATE1;
     }
     public void BattleStart(string name, int damage, int hp, Sprite enemyimg)
@@ -165,7 +165,6 @@ public class BattleSystem : MonoBehaviour
             description.text = unitName + " attacked with \"procrastination\"";
             playerHP -= damage;
             PlayerSlider.value = playerHP;
-
             yield return new WaitForSeconds(1f);
             if (playerHP <= 0)
             {

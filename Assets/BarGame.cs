@@ -89,6 +89,7 @@ public class BarGame : MonoBehaviour
             clicked = false;
             oscillationSpeed = 10;
             score = 0; 
+            controls.investors += 100;
             canvas.SetActive(false);
            
             controls.canMove = true;

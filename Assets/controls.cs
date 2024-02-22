@@ -8,6 +8,7 @@ public class controls : MonoBehaviour
     public Rigidbody2D rb;
     public  Transform player;
     public float movespeed = 5f;
+    public static int investors;
     Vector2 movement;
     public Animator animator;
     public static bool canMove = true;
@@ -17,7 +18,7 @@ public class controls : MonoBehaviour
     public bool second;
     void Start()
     {
-        
+        investors = 0;
     }
 
     // Update is called once per frame
