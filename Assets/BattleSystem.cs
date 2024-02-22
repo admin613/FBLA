@@ -16,7 +16,6 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject HealthUI;
     public GameObject AttackButton;
-    public GameObject gameover;
     public GameObject moveSelector;
     public GameObject moveDescriptionUI;
     public GameObject DescriptionUI;
@@ -166,7 +165,6 @@ public class BattleSystem : MonoBehaviour
             if (playerHP <= 0)
             {
                 state = BattleState.LOST;
-                gameover.SetActive(true);
                 Canvas.SetActive(false);
                 yield break;
             }
