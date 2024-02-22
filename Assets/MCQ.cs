@@ -110,6 +110,7 @@ public class MCQ : MonoBehaviour
             {
                 controls.attackMultiplier[multiplierIndex] = 1;
                 controls.movelist[multiplierIndex] = addString; 
+                controls.investors += 100;
             }
             for (int i = 0; i < answerButtons.Length; i++)
             {
